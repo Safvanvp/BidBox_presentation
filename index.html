@@ -4,19 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BidBox India - Investment Pitch</title>
+  <title>BidBox India - Premium Collectibles Marketplace</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff9933 0%, #138808 50%, #000080 100%);
-      overflow-x: hidden;
+      background: #0f0c29;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
       color: white;
+      overflow-x: hidden;
     }
 
     .container {
@@ -31,10 +34,11 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      padding: 60px 20px;
+      position: relative;
       opacity: 0;
       transform: translateY(50px);
       transition: all 0.8s ease;
-      padding: 40px 20px;
     }
 
     .slide.active {
@@ -46,102 +50,241 @@
       font-size: 3.5rem;
       margin-bottom: 30px;
       text-align: center;
-      background: linear-gradient(45deg, #ff9933, #ffffff, #138808);
+      background: linear-gradient(45deg, #f7971e, #ffd200);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        filter: drop-shadow(0 0 20px rgba(255, 153, 51, 0.3));
-      }
-
-      to {
-        filter: drop-shadow(0 0 30px rgba(19, 136, 8, 0.5));
-      }
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .slide h2 {
       font-size: 2.5rem;
       margin-bottom: 30px;
       text-align: center;
-      color: #ffd700;
+      color: #ffd200;
     }
 
-    .slide p,
-    .slide li {
-      font-size: 1.3rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    .slide p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      max-width: 800px;
       text-align: center;
-      max-width: 900px;
+      opacity: 0.9;
     }
 
-    .features-grid {
+    /* Market Stats Grid */
+    .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      margin: 40px 0;
       width: 100%;
+      margin: 40px 0;
     }
 
-    .feature-card {
+    .stat-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border-radius: 15px;
       padding: 30px;
       text-align: center;
-      transform: translateY(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transform: scale(0.8);
       opacity: 0;
       transition: all 0.6s ease;
-      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .feature-card.animate {
+    .stat-card.animate {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .stat-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #ffd200;
+    }
+
+    .stat-card .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #f7971e, #ffd200);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    /* Collectibles Showcase */
+    .collectibles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      width: 100%;
+      margin: 40px 0;
+    }
+
+    .collectible-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.5s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .collectible-card.animate {
       transform: translateY(0);
       opacity: 1;
     }
 
-    .feature-card:hover {
-      transform: translateY(-10px) scale(1.05);
-      background: rgba(255, 255, 255, 0.2);
+    .collectible-img {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
     }
 
-    .feature-card .icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .stats-container {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin: 40px 0;
-      width: 100%;
-    }
-
-    .stat-item {
+    .collectible-info {
+      padding: 20px;
       text-align: center;
-      margin: 20px;
-      transform: scale(0);
-      transition: transform 0.8s ease;
     }
 
-    .stat-item.animate {
-      transform: scale(1);
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #ffd700;
-      display: block;
+    .collectible-info h4 {
+      font-size: 1.2rem;
       margin-bottom: 10px;
     }
 
+    .collectible-info p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 0;
+    }
+
+    /* Comparison Table Styles */
+    .comparison-table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(5, 1fr);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .table-row.header {
+      background: rgba(0, 0, 0, 0.3);
+      font-weight: 600;
+    }
+
+    .table-row.highlight {
+      background: rgba(247, 151, 30, 0.15);
+      border-left: 4px solid #f7971e;
+    }
+
+    .table-col {
+      padding: 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .platform {
+      justify-content: flex-start;
+      padding-left: 20px;
+      gap: 12px;
+    }
+
+    .platform-logo {
+      height: 24px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .bidbox-logo {
+      font-weight: 700;
+      color: #ffd200;
+      font-size: 1.2rem;
+    }
+
+    .tick {
+      color: #138808;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .cross {
+      color: #ff3333;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .partial {
+      color: #ffd200;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .key-takeaway {
+      max-width: 800px;
+      margin: 40px auto 0;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-left: 4px solid #f7971e;
+    }
+
+    .takeaway-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .subhead {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 900px) {
+      .table-row {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+
+      .table-row.header .table-col:nth-child(n+4),
+      .table-row .table-col:nth-child(n+4) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .table-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .table-row.header .table-col:nth-child(3),
+      .table-row .table-col:nth-child(3) {
+        display: none;
+      }
+
+      .key-takeaway {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Navigation */
     .navigation {
       position: fixed;
       bottom: 30px;
@@ -149,20 +292,23 @@
       transform: translateX(-50%);
       display: flex;
       gap: 15px;
-      z-index: 1000;
+      z-index: 100;
     }
 
     .nav-btn {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       border: none;
       background: rgba(255, 255, 255, 0.2);
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .nav-btn:hover {
@@ -170,158 +316,45 @@
       transform: scale(1.1);
     }
 
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
-      transition: width 0.3s ease;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ffd700;
-      margin-bottom: 20px;
-    }
-
+    /* CTA Button */
     .cta-button {
-      background: linear-gradient(45deg, #ff9933, #138808);
+      background: linear-gradient(45deg, #f7971e, #ffd200);
       border: none;
       padding: 15px 40px;
-      font-size: 1.2rem;
-      color: white;
+      font-size: 1.1rem;
+      color: #0f0c29;
       border-radius: 50px;
       cursor: pointer;
       margin-top: 30px;
+      font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 20px rgba(247, 151, 30, 0.3);
     }
 
     .cta-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(247, 151, 30, 0.4);
     }
 
-    .market-size {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      margin: 40px 0;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .market-circle {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 1.1rem;
-      text-align: center;
+      height: 5px;
       background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      transform: scale(0);
-      transition: transform 0.8s ease;
-      margin: 0 auto;
+      z-index: 100;
     }
 
-    .market-circle.animate {
-      transform: scale(1);
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #f7971e, #ffd200);
+      width: 0%;
+      transition: width 0.3s ease;
     }
 
-    .revenue-model {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      width: 100%;
-      margin: 40px 0;
-    }
-
-    .revenue-item {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      transform: translateX(-50px);
-      opacity: 0;
-      transition: all 0.6s ease;
-    }
-
-    .revenue-item.animate {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    .competition-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      width: 100%;
-      margin: 40px 0;
-    }
-
-    .competitor-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 25px;
-      border-radius: 15px;
-      text-align: center;
-      transform: rotateY(90deg);
-      opacity: 0;
-      transition: all 0.8s ease;
-    }
-
-    .competitor-card.animate {
-      transform: rotateY(0deg);
-      opacity: 1;
-    }
-
-    .india-flag {
-      background: linear-gradient(to bottom, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%);
-      width: 60px;
-      height: 40px;
-      margin: 0 auto 20px;
-      border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .growth-chart {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-around;
-      height: 200px;
-      margin: 40px 0;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-    }
-
-    .growth-bar {
-      background: linear-gradient(to top, #ff9933, #138808);
-      width: 60px;
-      border-radius: 5px 5px 0 0;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      padding-bottom: 10px;
-      transform: scaleY(0);
-      transform-origin: bottom;
-      transition: transform 1s ease;
-    }
-
-    .growth-bar.animate {
-      transform: scaleY(1);
-    }
-
+    /* Responsive */
     @media (max-width: 768px) {
       .slide h1 {
         font-size: 2.5rem;
@@ -331,359 +364,255 @@
         font-size: 2rem;
       }
 
-      .slide p,
-      .slide li {
-        font-size: 1.1rem;
-      }
-
-      .features-grid {
+      .stats-grid {
         grid-template-columns: 1fr;
-      }
-
-      .stats-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .market-size {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .market-circle {
-        width: 180px;
-        height: 180px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="progress-bar" id="progressBar"></div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
   <div class="container">
-    <!-- Slide 1: Title -->
+    <!-- Slide 1: Hero -->
     <div class="slide active">
-      <div class="india-flag"></div>
-      <div class="logo">🏛️ BidBox India</div>
-      <h1>India's Premier Collectibles Auction Platform</h1>
-      <p>Capturing the ₹15,330 Crore Indian collectibles market through trusted digital auctions</p>
-      <button class="cta-button" onclick="nextSlide()">Discover the Opportunity</button>
+      <h1>BidBox India</h1>
+      <h2>India's Premium Collectibles Marketplace</h2>
+      <p>Revolutionizing how India buys and sells rare sneakers, books, jackets, and autographed memorabilia through
+        trusted auctions</p>
+      <button class="cta-button" onclick="nextSlide()">Explore the Opportunity</button>
     </div>
 
     <!-- Slide 2: Market Opportunity -->
     <div class="slide">
-      <h2>🇮🇳 The Indian Market Opportunity</h2>
-      <div class="market-size">
-        <div class="market-circle">
-          <strong style="font-size: 2.2rem; color: #ff9933;">₹15,330Cr</strong>
-          <span>Indian Collectibles Market 2024</span>
+      <h2>The ₹25,000 Crore Indian Collectibles Market</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">₹3,200Cr</div>
+          <h3>Sneakers Market</h3>
+          <p>Growing at 15% CAGR (2023-28)</p>
         </div>
-        <div class="market-circle">
-          <strong style="font-size: 2.2rem; color: #138808;">₹22,747Cr</strong>
-          <span>Projected by 2030</span>
+        <div class="stat-card">
+          <div class="stat-value">₹4,800Cr</div>
+          <h3>Rare Books</h3>
+          <p>First editions & signed copies</p>
         </div>
-        <div class="market-circle">
-          <strong style="font-size: 2.2rem; color: #ffd700;">7%</strong>
-          <span>Annual Growth Rate</span>
+        <div class="stat-card">
+          <div class="stat-value">₹2,100Cr</div>
+          <h3>Designer Jackets</h3>
+          <p>Vintage & limited editions</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">₹1,500Cr</div>
+          <h3>Autographed Items</h3>
+          <p>Bollywood & sports memorabilia</p>
         </div>
       </div>
-      <p>India's collectibles market is experiencing rapid growth with toys & action figures being a key segment
-        alongside growing digital adoption</p>
+      <p>India's collectibles market is underserved with no dedicated platform for premium items</p>
     </div>
 
-    <!-- Slide 3: Indian Toys Market -->
+    <!-- Slide 3: Problem -->
     <div class="slide">
-      <h2>🧸 Indian Toys Market Dynamics</h2>
-      <div class="growth-chart">
-        <div class="growth-bar animate" style="height: 60%;">
-          <span>₹1.9K Cr<br>2024</span>
+      <h2>Current Market Problems</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Fragmented</h3>
+          <p>Deals happen on WhatsApp, FB groups with no trust systems</p>
         </div>
-        <div class="growth-bar animate" style="height: 80%;">
-          <span>₹3.2K Cr<br>2027</span>
+        <div class="stat-card">
+          <h3>No Authentication</h3>
+          <p>40% of collectibles sold online are counterfeit (Indian Trademark Office)</p>
         </div>
-        <div class="growth-bar animate" style="height: 100%;">
-          <span>₹4.7K Cr<br>2033</span>
+        <div class="stat-card">
+          <h3>Price Discovery</h3>
+          <p>No transparent pricing for rare items in Indian market</p>
         </div>
-      </div>
-      <div class="stats-container">
-        <div class="stat-item">
-          <span class="stat-number" data-target="10">0</span>
-          <span>% CAGR Growth</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="62">0</span>
-          <span>% Market Share: Traditional Toys</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="38">0</span>
-          <span>% Market Share: Tech Toys</span>
+        <div class="stat-card">
+          <h3>Payment Risks</h3>
+          <p>65% collectors report payment frauds in peer-to-peer deals</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 4: Problem -->
+    <!-- Slide: Competitive Comparison -->
     <div class="slide">
-      <h2>⚡ Market Challenges in India</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="icon">🔍</span>
-          <h3>Fragmented Discovery</h3>
-          <p>Collectors browse across WhatsApp groups, Facebook pages, and informal networks with no centralized
-            platform</p>
+      <h2>Why BidBox Wins Where Others Fall Short</h2>
+      <p class="subhead">Existing platforms weren't built for serious collectors</p>
+
+      <div class="comparison-table">
+        <!-- Table Header -->
+        <div class="table-row header">
+          <div class="table-col platform">Platform</div>
+          <div class="table-col">Authenticity Checks</div>
+          <div class="table-col">Auction Format</div>
+          <div class="table-col">Collector Community</div>
+          <div class="table-col">Price Discovery</div>
+          <div class="table-col">Payment Protection</div>
         </div>
-        <div class="feature-card">
-          <span class="icon">🚫</span>
-          <h3>Trust & Authentication</h3>
-          <p>65% of collectors report concerns about fake items and unreliable sellers in the Indian market</p>
+
+        <!-- OLX Row -->
+        <div class="table-row">
+          <div class="table-col platform">
+            <img src="https://images.seeklogo.com/logo-png/48/2/olx-logo-png_seeklogo-487460.png" alt="OLX"
+              class="platform-logo">
+            <span>OLX</span>
+          </div>
+          <div class="table-col"><span class="cross">✕</span> No verification</div>
+          <div class="table-col"><span class="cross">✕</span> Fixed price only</div>
+          <div class="table-col"><span class="cross">✕</span> No community features</div>
+          <div class="table-col"><span class="cross">✕</span> Seller decides</div>
+          <div class="table-col"><span class="cross">✕</span> Direct transfers</div>
         </div>
-        <div class="feature-card">
-          <span class="icon">💸</span>
-          <h3>Pricing Inefficiency</h3>
-          <p>Fixed-price listings dominate, missing the dynamic pricing benefits of competitive auctions</p>
+
+        <!-- Facebook Marketplace Row -->
+        <div class="table-row">
+          <div class="table-col platform">
+            <img src="https://pngimg.com/uploads/facebook_logos/facebook_logos_PNG19753.png" alt="Facebook Marketplace"
+              class="platform-logo">
+            <span>Facebook</span>
+          </div>
+          <div class="table-col"><span class="cross">✕</span> No authentication</div>
+          <div class="table-col"><span class="cross">✕</span> No auctions</div>
+          <div class="table-col"><span class="partial">△</span> Groups exist but fragmented</div>
+          <div class="table-col"><span class="cross">✕</span> No market data</div>
+          <div class="table-col"><span class="cross">✕</span> Risky peer-to-peer</div>
         </div>
-        <div class="feature-card">
-          <span class="icon">📱</span>
-          <h3>Mobile-First Gap</h3>
-          <p>Existing platforms lack India-specific mobile experiences for the 750M+ smartphone users</p>
+
+        <!-- Amazon/Flipkart Row -->
+        <div class="table-row">
+          <div class="table-col platform">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
+              class="platform-logo">
+            <span>Amazon/Flipkart</span>
+          </div>
+          <div class="table-col"><span class="partial">△</span> Only for new items</div>
+          <div class="table-col"><span class="cross">✕</span> Fixed retail pricing</div>
+          <div class="table-col"><span class="cross">✕</span> No collector features</div>
+          <div class="table-col"><span class="partial">△</span> Only MSRP data</div>
+          <div class="table-col"><span class="tick">✓</span> Standard protections</div>
         </div>
+
+        <!-- BidBox Row - Highlighted -->
+        <div class="table-row highlight">
+          <div class="table-col platform">
+            <div class="bidbox-logo">BidBox</div>
+          </div>
+          <div class="table-col"><span class="tick">✓</span> 3-step verification</div>
+          <div class="table-col"><span class="tick">✓</span> Live & timed auctions</div>
+          <div class="table-col"><span class="tick">✓</span> Built-in collector network</div>
+          <div class="table-col"><span class="tick">✓</span> Real-time market data</div>
+          <div class="table-col"><span class="tick">✓</span> Escrow payments</div>
+        </div>
+      </div>
+
+      <div class="key-takeaway">
+        <div class="takeaway-icon">💡</div>
+        <p>Existing platforms are either too informal (OLX/Facebook) or too retail-focused (Amazon/Flipkart) - BidBox
+          fills the gap for <strong>serious collectors</strong></p>
       </div>
     </div>
 
-    <!-- Slide 5: Solution -->
+    <!-- Slide 4: Solution -->
     <div class="slide">
-      <h2>🎯 BidBox India Solution</h2>
-      <p>The first mobile-first auction platform designed specifically for Indian collectors with local language support
-        and cultural understanding</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="icon">🕒</span>
-          <h3>Live Auction Rooms</h3>
-          <p>Real-time bidding optimized for Indian internet speeds with Hindi/English support</p>
+      <h2>BidBox Solution</h2>
+      <div class="collectibles-grid">
+
+        <div class="collectible-card">
+          <div class="collectible-img"
+            style="background-image: url('https://wallpapers.com/images/hd/hot-wheels-marvel-collection-png-svv-m0w7b81jktfzd8a6.png')">
+          </div>
+          <div class="collectible-info">
+            <h4>Rare Toys</h4>
+            <p>Vintage 80s toys,Hot Wheels and Monster High</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="icon">🛡️</span>
-          <h3>Community Trust Network</h3>
-          <p>Seller verification through local collector communities and Aadhaar integration</p>
+        <div class="collectible-card">
+          <div class="collectible-img"
+            style="background-image: url('https://www.pngall.com/wp-content/uploads/6/Comic-Effect-PNG-Image-HD.png')">
+          </div>
+          <div class="collectible-info">
+            <h4>Signed Books</h4>
+            <p>First editions of Tagore, Rushdie</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="icon">💳</span>
-          <h3>UPI & Digital Payments</h3>
-          <p>Seamless integration with UPI, Paytm, and escrow services for secure transactions</p>
+        <div class="collectible-card">
+          <div class="collectible-img"
+            style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/051/339/885/small/stylish-jacket-isolated-on-transparent-background-png.png')">
+          </div>
+          <div class="collectible-info">
+            <h4>Designer Jackets</h4>
+            <p>Vintage Levi's, Supreme, local designers</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="icon">🎨</span>
-          <h3>Indian Collectibles Focus</h3>
-          <p>Specialized categories for Bollywood memorabilia, Indian comics, and regional toys</p>
+        <div class="collectible-card">
+          <div class="collectible-img"
+            style="background-image: url('https://image.goat.com/transform/v1/attachments/product_template_pictures/images/110/451/841/original/1597297_00.png.png?width=750')">
+          </div>
+          <div class="collectible-info">
+            <h4>Verified Sneakers</h4>
+            <p>Rare Jordans, Yeezys with authenticity checks</p>
+          </div>
         </div>
       </div>
+      <p>India's first end-to-end platform with verification, escrow payments, and premium auctions</p>
     </div>
 
-    <!-- Slide 6: Competition Analysis -->
+    <!-- Slide 5: Business Model -->
     <div class="slide">
-      <h2>🥊 Competitive Landscape</h2>
-      <div class="competition-grid">
-        <div class="competitor-card">
-          <h3>🌐 OLX/Quikr</h3>
-          <p><strong>Weakness:</strong> Static listings, no auction format, trust issues</p>
-          <p><strong>Market Share:</strong> 40% general classifieds</p>
+      <h2>Revenue Streams</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">8%</div>
+          <h3>Transaction Fee</h3>
+          <p>On successful auctions (lower than global platforms)</p>
         </div>
-        <div class="competitor-card">
-          <h3>📘 Facebook Groups</h3>
-          <p><strong>Weakness:</strong> Informal, no payment protection, fragmented</p>
-          <p><strong>Usage:</strong> 70% of collectors use for discovery</p>
+        <div class="stat-card">
+          <div class="stat-value">₹2,499</div>
+          <h3>Seller Subscription</h3>
+          <p>Premium storefronts for dealers</p>
         </div>
-        <div class="competitor-card">
-          <h3>🛒 Amazon/Flipkart</h3>
-          <p><strong>Weakness:</strong> No authentic vintage/collectibles focus, fixed pricing</p>
-          <p><strong>Limitation:</strong> New items only, no collector community</p>
+        <div class="stat-card">
+          <div class="stat-value">₹999+</div>
+          <h3>Authentication</h3>
+          <p>Per-item verification service</p>
         </div>
-        <div class="competitor-card">
-          <h3>🏆 BidBox Advantage</h3>
-          <p><strong>Unique:</strong> Auction format + collector focus + mobile-first + trust system</p>
-          <p><strong>Position:</strong> First mover in premium collectibles auctions</p>
+        <div class="stat-card">
+          <div class="stat-value">₹5L+</div>
+          <h3>Concierge</h3>
+          <p>High-net-worth collector services</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 7: Business Model -->
+    <!-- Slide 6: Investment Ask -->
     <div class="slide">
-      <h2>💰 Revenue Streams</h2>
-      <div class="revenue-model">
-        <div class="revenue-item">
-          <h3>🏆 Auction Commission</h3>
-          <p><strong>5-8%</strong> on successful auctions</p>
-          <p>Lower than global platforms, competitive for India</p>
+      <h2>Investment Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">₹5 Crore</div>
+          <h3>Pre-Seed Round</h3>
+          <p>For MVP development and launch</p>
         </div>
-        <div class="revenue-item">
-          <h3>✅ Authentication Services</h3>
-          <p><strong>₹500-₹5,000</strong> per item verification</p>
-          <p>Partnership with local experts and collectors</p>
+        <div class="stat-card">
+          <div class="stat-value">18%</div>
+          <h3>Equity Offer</h3>
+          <p>₹28 Crore valuation cap</p>
         </div>
-        <div class="revenue-item">
-          <h3>⭐ Premium Memberships</h3>
-          <p><strong>₹499/month</strong> for enhanced features</p>
-          <p>Early access, advanced analytics, priority support</p>
+        <div class="stat-card">
+          <div class="stat-value">24 Months</div>
+          <h3>Runway</h3>
+          <p>To reach 50,000 users</p>
         </div>
-        <div class="revenue-item">
-          <h3>📊 Market Insights</h3>
-          <p><strong>₹2,999/month</strong> for dealers</p>
-          <p>Price trends, demand analytics, inventory guidance</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 8: Go-to-Market Strategy -->
-    <div class="slide">
-      <h2>🚀 Go-to-Market Strategy</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="icon">🎯</span>
-          <h3>Phase 1: Metro Cities</h3>
-          <p>Launch in Delhi, Mumbai, Bangalore, Chennai with local collector communities</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🤝</span>
-          <h3>Community Partnerships</h3>
-          <p>Partner with existing collector groups, comic cons, and toy fairs</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">📱</span>
-          <h3>Digital Marketing</h3>
-          <p>Instagram/YouTube influencer partnerships with toy reviewers and collectors</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🌍</span>
-          <h3>Expansion Plan</h3>
-          <p>Tier-2 cities by Q3 2025, vernacular language support by Q4 2025</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 9: Traction -->
-    <!-- <div class="slide">
-      <h2>📈 Early Traction</h2>
-      <div class="stats-container">
-        <div class="stat-item">
-          <span class="stat-number" data-target="12000">0</span>
-          <span>Beta Users (6 months)</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="380">0</span>
-          <span>Active Sellers</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="85">0</span>
-          <span>Lakhs GMV (₹)</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="92">0</span>
-          <span>NPS Score</span>
-        </div>
-      </div>
-      <p>Strong early adoption with 45% month-over-month growth in active users across Delhi and Mumbai</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="icon">📊</span>
-          <h3>User Metrics</h3>
-          <p>Average session: 18 minutes<br>Repeat usage: 73%<br>Conversion rate: 12%</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">💎</span>
-          <h3>High-Value Items</h3>
-          <p>Sold rare Amar Chitra Katha for ₹45,000<br>Vintage Bollywood poster: ₹32,000</p>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- Slide 10: Financial Projections -->
-    <!-- <div class="slide">
-      <h2>📊 Financial Projections</h2>
-      <div class="growth-chart">
-        <div class="growth-bar" style="height: 20%;">
-          <span>₹50L<br>2024</span>
-        </div>
-        <div class="growth-bar" style="height: 45%;">
-          <span>₹2.8Cr<br>2025</span>
-        </div>
-        <div class="growth-bar" style="height: 75%;">
-          <span>₹12Cr<br>2026</span>
-        </div>
-        <div class="growth-bar" style="height: 100%;">
-          <span>₹35Cr<br>2027</span>
-        </div>
-      </div>
-      <div class="stats-container">
-        <div class="stat-item">
-          <span class="stat-number" data-target="150000">0</span>
-          <span>Target Users by 2027</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="25">0</span>
-          <span>% Gross Margin</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="18">0</span>
-          <span>Months to Profitability</span>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- Slide 11: Investment Ask -->
-    <!-- <div class="slide">
-      <h2>🎯 Investment Opportunity</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="icon">💵</span>
-          <h3>Seeking ₹25 Crore Series A</h3>
-          <p>18-month runway for aggressive market capture</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">📈</span>
-          <h3>15% Equity</h3>
-          <p>₹165 Crore pre-money valuation</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🎯</span>
-          <h3>Use of Funds</h3>
-          <p>40% Product Development<br>35% Marketing & Acquisition<br>25% Team Expansion</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🏆</span>
-          <h3>Target Returns</h3>
-          <p>10x+ returns in 4-5 years<br>IPO/Strategic exit potential</p>
+        <div class="stat-card">
+          <div class="stat-value">10X</div>
+          <h3>Projected Returns</h3>
+          <p>By Year 5</p>
         </div>
       </div>
       <button class="cta-button">Join India's Collectibles Revolution</button>
-    </div> -->
-
-    <!-- Slide 12: Team & Vision -->
-    <div class="slide">
-      <h2>👥 Why We'll Win</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="icon">🎯</span>
-          <h3>Market Timing</h3>
-          <p>Perfect confluence of digital adoption, disposable income growth, and nostalgia trends</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🧠</span>
-          <h3>Deep Understanding</h3>
-          <p>Team combines tech expertise with genuine collector passion and Indian market knowledge</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🏗️</span>
-          <h3>Execution Focus</h3>
-          <p>Mobile-first, India-specific features, and strong community building from day one</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🌟</span>
-          <h3>Vision</h3>
-          <p>To become the trusted platform where every Indian collector discovers their next treasure</p>
-        </div>
-      </div>
-      <p><strong>Ready to capture the ₹15,330 Crore opportunity?</strong></p>
-      <button class="cta-button">Let's Build Together</button>
     </div>
   </div>
 
@@ -693,121 +622,75 @@
   </div>
 
   <script>
-    window.onload = function () {
-      let currentSlide = 0;
+    document.addEventListener('DOMContentLoaded', function () {
       const slides = document.querySelectorAll('.slide');
       const totalSlides = slides.length;
+      let currentSlide = 0;
 
-      function updateProgressBar() {
-        const progress = ((currentSlide + 1) / totalSlides) * 100;
-        document.getElementById('progressBar').style.width = progress + '%';
-      }
+      // Initialize first slide
+      showSlide(currentSlide);
 
       function showSlide(index) {
-
-        currentSlide = (index + totalSlides) % totalSlides;
-
         // Hide all slides
         slides.forEach(slide => {
           slide.classList.remove('active');
-          slide.style.display = 'none'; // Add this to ensure slides are hidden
+          slide.style.display = 'none';
+
+          // Reset all animations
+          const cards = slide.querySelectorAll('.stat-card, .collectible-card');
+          cards.forEach(card => card.classList.remove('animate'));
         });
 
         // Show current slide
-        slides[currentSlide].classList.add('active');
-        slides[currentSlide].style.display = 'flex';
-
-        slides.forEach(slide => slide.classList.remove('active'));
         slides[index].classList.add('active');
+        slides[index].style.display = 'flex';
+        currentSlide = index;
 
+        // Update progress bar
+        updateProgressBar();
+
+        // Animate elements in current slide
         setTimeout(() => {
-          const activeSlide = slides[index];
-          const cards = activeSlide.querySelectorAll('.feature-card');
-          const stats = activeSlide.querySelectorAll('.stat-item');
-          const circles = activeSlide.querySelectorAll('.market-circle');
-          const revenueItems = activeSlide.querySelectorAll('.revenue-item');
-          const competitorCards = activeSlide.querySelectorAll('.competitor-card');
-          const growthBars = activeSlide.querySelectorAll('.growth-bar');
-
+          const cards = slides[index].querySelectorAll('.stat-card, .collectible-card');
           cards.forEach((card, i) => {
-            setTimeout(() => card.classList.add('animate'), i * 200);
-          });
-
-          stats.forEach((stat, i) => {
             setTimeout(() => {
-              stat.classList.add('animate');
-              animateCounter(stat.querySelector('.stat-number'));
-            }, i * 300);
-          });
-
-          circles.forEach((circle, i) => {
-            setTimeout(() => circle.classList.add('animate'), i * 400);
-          });
-
-          revenueItems.forEach((item, i) => {
-            setTimeout(() => item.classList.add('animate'), i * 200);
-          });
-
-          competitorCards.forEach((card, i) => {
-            setTimeout(() => card.classList.add('animate'), i * 300);
-          });
-
-          growthBars.forEach((bar, i) => {
-            setTimeout(() => bar.classList.add('animate'), i * 200);
+              card.classList.add('animate');
+            }, i * 200);
           });
         }, 300);
       }
 
       function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-        updateProgressBar();
+        const next = (currentSlide + 1) % totalSlides;
+        showSlide(next);
       }
 
       function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        showSlide(currentSlide);
-        updateProgressBar();
+        const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(prev);
       }
 
-      function animateCounter(element) {
-        if (!element) return;
-        const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2000;
-        let current = 0;
-        const increment = target / (duration / 16);
-
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
-          }
-
-          if (target >= 100000) {
-            element.textContent = Math.floor(current / 1000) + 'K';
-          } else {
-            element.textContent = Math.floor(current);
-          }
-        }, 16);
+      function updateProgressBar() {
+        const progress = ((currentSlide + 1) / totalSlides) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
       }
 
-      document.querySelector('.nav-btn:nth-child(1)').onclick = prevSlide;
-      document.querySelector('.nav-btn:nth-child(2)').onclick = nextSlide;
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ') {
-          nextSlide();
-        } else if (e.key === 'ArrowLeft') {
-          prevSlide();
-        }
+      // Keyboard navigation
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
       });
 
-      updateProgressBar();
-      showSlide(0);
-    };
-  </script>
+      // Button event listeners
+      document.querySelectorAll('.nav-btn')[0].addEventListener('click', prevSlide);
+      document.querySelectorAll('.nav-btn')[1].addEventListener('click', nextSlide);
 
+      // Also make CTA buttons advance slides
+      document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('click', nextSlide);
+      });
+    });
+  </script>
 </body>
 
 </html>
